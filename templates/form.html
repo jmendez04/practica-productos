@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+
+<!-- ==================================================
+     TITULO DE LA PAGINA
+     ================================================== -->
+
+{% block title %}
+
+    {% if producto %}
+
+        Editar producto
+
+    {% else %}
+
+        Nuevo producto
+
+    {% endif %}
+
+{% endblock %}
+
+
+<!-- ==================================================
+     CONTENIDO DEL FORMULARIO
+     ================================================== -->
+
+{% block content %}
+
+
+    <!-- ==================================================
+         TITULO DEL FORMULARIO
+         ================================================== -->
+
+    {% if producto %}
+
+        <h2>Editar producto</h2>
+
+    {% else %}
+
+        <h2>Nuevo producto</h2>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         FORMULARIO
+         ================================================== -->
+
+    <form
+        method="POST"
+        class="formulario"
+    >
+
+
+        <!-- ==================================================
+             NOMBRE
+             ================================================== -->
+
+        <label for="nombre">
+            Nombre
+        </label>
+
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value="{{ producto.nombre if producto else '' }}"
+            required
+        >
+
+
+        <!-- ==================================================
+             CODIGO
+             ================================================== -->
+
+        <label for="codigo">
+            Código
+        </label>
+
+        <input
+            type="text"
+            id="codigo"
+            name="codigo"
+            value="{{ producto.codigo if producto else '' }}"
+        >
+
+
+        <!-- ==================================================
+             PRECIO
+             ================================================== -->
+
+        <label for="precio">
+            Precio
+        </label>
+
+        <input
+            type="number"
+            id="precio"
+            name="precio"
+            step="0.01"
+            min="0"
+            value="{{ producto.precio if producto else '' }}"
+            required
+        >
+
+
+        <!-- ==================================================
+             STOCK
+             ================================================== -->
+
+        <label for="stock">
+            Stock
+        </label>
+
+        <input
+            type="number"
+            id="stock"
+            name="stock"
+            min="0"
+            value="{{ producto.stock if producto else '' }}"
+            required
+        >
+
+
+        <!-- ==================================================
+             CATEGORIA
+             ================================================== -->
+
+        <label for="categoria">
+            Categoría
+        </label>
+
+        <input
+            type="text"
+            id="categoria"
+            name="categoria"
+            value="{{ producto.categoria if producto else '' }}"
+        >
+
+
+        <!-- ==================================================
+             ESTADO ACTIVO
+             ================================================== -->
+
+        <label class="checkbox">
+
+            <input
+                type="checkbox"
+                name="activo"
+                {% if not producto or producto.activo %}
+                    checked
+                {% endif %}
+            >
+
+            Activo
+
+        </label>
+
+
+        <!-- ==================================================
+             BOTONES DEL FORMULARIO
+             ================================================== -->
+
+        <div class="acciones-formulario">
+
+
+            <!-- ==================================================
+                 GUARDAR
+                 ================================================== -->
+
+            <button
+                type="submit"
+                class="boton boton-guardar"
+            >
+                Guardar
+            </button>
+
+
+            <!-- ==================================================
+                 CANCELAR
+                 ================================================== -->
+
+            <a
+                href="{{ url_for('index') }}"
+                class="boton boton-cancelar"
+            >
+                Cancelar
+            </a>
+
+
+        </div>
+
+
+    </form>
+
+
+{% endblock %}

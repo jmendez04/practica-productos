@@ -1,150 +1,180 @@
 {% extends "base.html" %}
 
 
-<!-- =========================================================
-     CONFIGURACION GENERAL
-========================================================== -->
+<!-- ==================================================
+     TITULO DE LA PAGINA
+     ================================================== -->
 
-{% block titulo %}
+{% block title %}
+
 Productos
+
 {% endblock %}
 
 
-{% block contenido %}
+<!-- ==================================================
+     CONTENIDO PRINCIPAL
+     ================================================== -->
+
+{% block content %}
 
 
-<!-- =========================================================
-     ENCABEZADO DEL INDEX
-========================================================== -->
+    <!-- ==================================================
+         TITULO Y BOTON NUEVO PRODUCTO
+         ================================================== -->
 
-<div class="titulo-pagina">
+    <div class="barra-superior">
 
-    <div>
-        <h2>Lista de productos</h2>
+        <h2>Productos registrados</h2>
 
-        <p>
-            Productos registrados en el sistema.
-        </p>
+        <a
+            href="{{ url_for('nuevo_producto') }}"
+            class="boton boton-nuevo"
+        >
+            + Nuevo producto
+        </a>
+
     </div>
 
 
-    <!-- =====================================================
-         BOTON NUEVO
-    ====================================================== -->
+    <!-- ==================================================
+         TABLA DE PRODUCTOS
+         ================================================== -->
 
-    <a
-        href="{{ url_for('nuevo_producto') }}"
-        class="boton boton-nuevo"
-    >
-        + Nuevo producto
-    </a>
-
-</div>
+    <table class="tabla">
 
 
-<!-- =========================================================
-     TABLA DE PRODUCTOS
-========================================================== -->
-
-<div class="tabla-contenedor">
-
-    <table>
+        <!-- ==================================================
+             ENCABEZADO DE LA TABLA
+             ================================================== -->
 
         <thead>
 
             <tr>
-                <th>ID</th>
+
                 <th>Nombre</th>
                 <th>Código</th>
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Categoría</th>
                 <th>Estado</th>
-                <th>Fecha</th>
+                <th>Acciones</th>
+
             </tr>
 
         </thead>
+
+
+        <!-- ==================================================
+             DATOS DE LOS PRODUCTOS
+             ================================================== -->
 
         <tbody>
 
             {% for producto in productos %}
 
-            <tr>
+                <tr>
 
-                <td>{{ producto.id }}</td>
+                    <td>
+                        {{ producto.nombre }}
+                    </td>
 
-                <td>{{ producto.nombre }}</td>
+                    <td>
+                        {{ producto.codigo }}
+                    </td>
 
-                <td>
-                    {{ producto.codigo or '-' }}
-                </td>
+                    <td>
+                        Q{{ producto.precio }}
+                    </td>
 
-                <td>
-                    Q {{ "%.2f"|format(producto.precio) }}
-                </td>
+                    <td>
+                        {{ producto.stock }}
+                    </td>
 
-                <td>
-                    {{ producto.stock }}
-                </td>
-
-                <td>
-                    {{ producto.categoria or '-' }}
-                </td>
+                    <td>
+                        {{ producto.categoria }}
+                    </td>
 
 
-                <!-- =========================================
-                     ESTADO ACTIVO / INACTIVO
-                ========================================== -->
+                    <!-- ======================================
+                         ESTADO DEL PRODUCTO
+                         ====================================== -->
 
-                <td>
+                    <td>
 
-                    {% if producto.activo %}
+                        {% if producto.activo %}
 
-                        <span class="estado activo">
                             Activo
-                        </span>
 
-                    {% else %}
+                        {% else %}
 
-                        <span class="estado inactivo">
                             Inactivo
-                        </span>
 
-                    {% endif %}
+                        {% endif %}
 
-                </td>
-
-
-                <td>
-
-                    {% if producto.fecha_registro %}
-
-                        {{ producto.fecha_registro.strftime('%d/%m/%Y') }}
-
-                    {% else %}
-
-                        -
-
-                    {% endif %}
-
-                </td>
-
-            </tr>
+                    </td>
 
 
-            <!-- =================================================
-                 SI NO EXISTEN PRODUCTOS
-            ================================================== -->
+                    <!-- ======================================
+                         BOTONES EDITAR Y ELIMINAR
+                         ====================================== -->
+
+                    <td class="acciones">
+
+
+                        <!-- ==================================
+                             EDITAR
+                             ================================== -->
+
+                        <a
+                            href="{{ url_for('editar_producto', id=producto.id) }}"
+                            class="boton boton-editar"
+                        >
+                            Editar
+                        </a>
+
+
+                        <!-- ==================================
+                             ELIMINAR
+                             ================================== -->
+
+                        <form
+                            method="POST"
+                            action="{{ url_for('eliminar_producto', id=producto.id) }}"
+                            class="form-eliminar"
+                        >
+
+                            <button
+                                type="submit"
+                                class="boton boton-eliminar"
+                                onclick="return confirm('¿Desea eliminar este producto?')"
+                            >
+                                Eliminar
+                            </button>
+
+                        </form>
+
+
+                    </td>
+
+                </tr>
+
+
+            <!-- ==================================================
+                 MENSAJE SI NO EXISTEN PRODUCTOS
+                 ================================================== -->
 
             {% else %}
 
-            <tr>
+                <tr>
 
-                <td colspan="8" class="sin-datos">
-                    No hay productos registrados.
-                </td>
+                    <td colspan="7" class="sin-productos">
 
-            </tr>
+                        No hay productos registrados.
+
+                    </td>
+
+                </tr>
 
             {% endfor %}
 
@@ -152,6 +182,5 @@ Productos
 
     </table>
 
-</div>
 
 {% endblock %}

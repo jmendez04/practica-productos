@@ -1,0 +1,312 @@
+/* ==========================================================
+   CONFIGURACION GENERAL
+   ========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f4f6f8;
+
+    color: #222;
+}
+
+
+/* ==========================================================
+   BASE.HTML
+   ENCABEZADO
+   ========================================================== */
+
+.encabezado {
+    background-color: #1a2744;
+
+    color: white;
+
+    padding: 20px;
+}
+
+
+.encabezado h1 {
+    margin: 0;
+
+    text-align: center;
+}
+
+
+/* ==========================================================
+   BASE.HTML
+   CONTENEDOR PRINCIPAL
+   ========================================================== */
+
+.contenedor {
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 5px;
+}
+
+
+/* ==========================================================
+   BASE.HTML
+   MENSAJES FLASH
+   ========================================================== */
+
+.mensajes {
+    background-color: #dff0d8;
+
+    border: 1px solid #b8d8ad;
+
+    padding: 10px;
+
+    margin-bottom: 20px;
+
+    border-radius: 5px;
+}
+
+
+.mensajes p {
+    margin: 0;
+}
+
+
+/* ==========================================================
+   INDEX.HTML
+   BARRA SUPERIOR
+   ========================================================== */
+
+.barra-superior {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.barra-superior h2 {
+    margin: 0;
+}
+
+
+/* ==========================================================
+   INDEX.HTML
+   TABLA
+   ========================================================== */
+
+.tabla {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.tabla th,
+.tabla td {
+    padding: 10px;
+
+    border: 1px solid #dddddd;
+
+    text-align: left;
+}
+
+
+.tabla th {
+    background-color: #1a2744;
+
+    color: white;
+}
+
+
+.tabla tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+
+/* ==========================================================
+   INDEX.HTML
+   COLUMNA DE ACCIONES
+   ========================================================== */
+
+.acciones {
+    display: flex;
+
+    gap: 5px;
+}
+
+
+.form-eliminar {
+    margin: 0;
+}
+
+
+/* ==========================================================
+   BOTONES GENERALES
+   ========================================================== */
+
+.boton {
+    display: inline-block;
+
+    padding: 8px 14px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   INDEX.HTML
+   BOTON NUEVO
+   ========================================================== */
+
+.boton-nuevo {
+    background-color: #1a2744;
+
+    color: white;
+}
+
+
+/* ==========================================================
+   INDEX.HTML
+   BOTON EDITAR
+   ========================================================== */
+
+.boton-editar {
+    background-color: #e0a341;
+
+    color: black;
+}
+
+
+/* ==========================================================
+   INDEX.HTML
+   BOTON ELIMINAR
+   ========================================================== */
+
+.boton-eliminar {
+    background-color: #d1453d;
+
+    color: white;
+}
+
+
+/* ==========================================================
+   INDEX.HTML
+   SIN PRODUCTOS
+   ========================================================== */
+
+.sin-productos {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #666;
+}
+
+
+/* ==========================================================
+   FORM.HTML
+   FORMULARIO
+   ========================================================== */
+
+.formulario {
+    width: 450px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* ==========================================================
+   FORM.HTML
+   LABELS
+   ========================================================== */
+
+.formulario label {
+    font-weight: bold;
+}
+
+
+/* ==========================================================
+   FORM.HTML
+   INPUTS
+   ========================================================== */
+
+.formulario input[type="text"],
+.formulario input[type="number"] {
+    width: 100%;
+
+    padding: 9px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 4px;
+}
+
+
+/* ==========================================================
+   FORM.HTML
+   INPUT ACTIVO
+   ========================================================== */
+
+.checkbox {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 5px;
+}
+
+
+/* ==========================================================
+   FORM.HTML
+   BOTONES
+   ========================================================== */
+
+.acciones-formulario {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+
+.boton-guardar {
+    background-color: #1a2744;
+
+    color: white;
+}
+
+
+.boton-cancelar {
+    background-color: #dddddd;
+
+    color: black;
+}

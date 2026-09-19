@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- =====================================================
+         CONFIGURACION GENERAL
+    ====================================================== -->
+
+    <meta charset="UTF-8">
+
+    <title>
+        {% block titulo %}CRUD de Productos{% endblock %}
+    </title>
+
+    <!-- Archivo CSS externo -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/estilos.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <header class="encabezado">
+
+        <div class="contenedor">
+
+            <h1>CRUD de Productos</h1>
+
+            <p>Flask + PostgreSQL</p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="contenedor contenido">
+
+
+        <!-- =================================================
+             MENSAJES FLASH
+        ================================================== -->
+
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+
+            {% if mensajes %}
+
+                {% for categoria, mensaje in mensajes %}
+
+                    <div class="mensaje {{ categoria }}">
+                        {{ mensaje }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- =================================================
+             CONTENIDO DE CADA PAGINA
+        ================================================== -->
+
+        {% block contenido %}
+
+        {% endblock %}
+
+
+    </main>
+
+
+    <!-- =====================================================
+         PIE DE PAGINA
+    ====================================================== -->
+
+    <footer class="pie">
+
+        <p>Práctica CRUD de Productos</p>
+
+    </footer>
+
+</body>
+
+</html>

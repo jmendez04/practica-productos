@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+
+<!-- =========================================================
+     CONFIGURACION GENERAL
+========================================================== -->
+
+{% block titulo %}
+Productos
+{% endblock %}
+
+
+{% block contenido %}
+
+
+<!-- =========================================================
+     ENCABEZADO DEL INDEX
+========================================================== -->
+
+<div class="titulo-pagina">
+
+    <div>
+        <h2>Lista de productos</h2>
+
+        <p>
+            Productos registrados en el sistema.
+        </p>
+    </div>
+
+
+    <!-- =====================================================
+         BOTON NUEVO
+    ====================================================== -->
+
+    <a
+        href="{{ url_for('nuevo_producto') }}"
+        class="boton boton-nuevo"
+    >
+        + Nuevo producto
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     TABLA DE PRODUCTOS
+========================================================== -->
+
+<div class="tabla-contenedor">
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Código</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for producto in productos %}
+
+            <tr>
+
+                <td>{{ producto.id }}</td>
+
+                <td>{{ producto.nombre }}</td>
+
+                <td>
+                    {{ producto.codigo or '-' }}
+                </td>
+
+                <td>
+                    Q {{ "%.2f"|format(producto.precio) }}
+                </td>
+
+                <td>
+                    {{ producto.stock }}
+                </td>
+
+                <td>
+                    {{ producto.categoria or '-' }}
+                </td>
+
+
+                <!-- =========================================
+                     ESTADO ACTIVO / INACTIVO
+                ========================================== -->
+
+                <td>
+
+                    {% if producto.activo %}
+
+                        <span class="estado activo">
+                            Activo
+                        </span>
+
+                    {% else %}
+
+                        <span class="estado inactivo">
+                            Inactivo
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+
+                <td>
+
+                    {% if producto.fecha_registro %}
+
+                        {{ producto.fecha_registro.strftime('%d/%m/%Y') }}
+
+                    {% else %}
+
+                        -
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+
+            <!-- =================================================
+                 SI NO EXISTEN PRODUCTOS
+            ================================================== -->
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="8" class="sin-datos">
+                    No hay productos registrados.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
